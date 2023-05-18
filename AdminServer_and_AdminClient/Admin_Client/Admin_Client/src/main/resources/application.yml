@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: Spring Boot Admin Client
+  boot:
+    admin:
+      client:
+        instance:
+          service-url: http://localhost:8082
+          management-url: http://localhost:8082/actuator
+          service-host-type: ip
+          name: ${spring.application.name:JSS}
+        url:  http://localhost:8080
+        enabled: true
+        auto-registration: true
+
+logging:
+  level:
+    root: INFO
+    eshop-dao: DEBUG
+    eshop-controller: INFO
+    eshop: INFO
+
+  group:
+    spring: "org.springframework, org.springdoc"
+    eshop-dao: "com.saggu.eshop.dao"
+    eshop-controller: "com.saggu.eshop.controller"
+    eshop: "com.saggu.eshop"
+
+server:
+  tomcat:
+    threads:
+      max: 5
+    max-connections: 10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    configprops:
+      show-values: always
+    env:
+      show-values: always
+    loggers:
+      enabled: true
+
+  server:
+    port: ${server.port:8082}
